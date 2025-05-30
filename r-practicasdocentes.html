@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rúbrica de Evaluación Docente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        .container {
+            max-width: 960px; /* Bootstrap default max-width for large containers */
+        }
+        .form-control:focus, .form-select:focus, .btn:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Bootstrap primary color focus ring */
+            border-color: #400101; /* Bootstrap primary color */
+        }
+        .table thead th {
+            background-color: #e9ecef; /* Light gray for table header */
+        }
+        .table tbody tr:nth-of-type(even) {
+            background-color: #f8f9fa; /* Zebra striping for table rows */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a0a0a0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #808080;
+        }
+        /* ... tu CSS existente ... */
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .header-logo {
+            height: 80px; /* Ajusta el tamaño del logo según sea necesario */
+            margin-right: 20px;
+        }
+
+        .header-text {
+            font-size: 1.3rem; /* Ajusta el tamaño del texto según sea necesario */
+            font-weight: 600;
+            color: #400101; /* Color primario de Bootstrap */
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .header-text {
+                font-size: 1.2rem;
+            }
+        }
+</style>
+    </style>
+</head>
+<body class="p-3">
+    <div class="container header-container">
+        <img src="https://telesecundaria41.github.io/images/LogoBENUNE_Trans.png" alt="Logo de la Benemérita Escuela Normal Urbana Nocturna del Estado" class="header-logo">
+        <p class="header-text">Benemérita Escuela Normal Urbana Nocturna del Estado<br><i>"Ing. José G. Valenzuela"</i></p>
+    </div>
+    <div class="container my-5 p-4 bg-white rounded shadow-lg border border-light">
+        <h1 class="text-center mb-4 text-primary fw-bold">Rúbrica de Evaluación para la Práctica Docente</h1>
+        <p class="text-muted text-center mb-5">Marque el nivel de desempeño que mejor describa la actuación del estudiante durante su jornada de práctica.</p>
+
+        <form id="evaluationForm" class="needs-validation" novalidate>
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label for="centroReceptor" class="form-label">Centro Receptor:</label>
+                    <select id="centroReceptor" name="centroReceptor" class="form-select" required>
+                        <option value="" disabled selected>Seleccione un centro receptor</option>
+                        <option value="Esc. Prim. 'Joaquín Ramírez Arballo'">Esc. Prim. 'Joaquín Ramírez Arballo'</option>
+                        <option value="Esc. Prim. 'IV Ayuntamiento No. 2'">Esc. Prim. 'IV Ayuntamiento No. 2'</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Por favor, seleccione un centro receptor.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="schoolDirector" class="form-label">Directivo:</label>
+                    <input type="text" id="schoolDirector" name="schoolDirector" class="form-control" readonly required>
+                    <div class="invalid-feedback">
+                        El nombre del directivo es requerido.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="studentName" class="form-label">Nombre del practicante:</label>
+                    <select id="studentName" name="studentName" class="form-select" required>
+                        <option value="" disabled selected>Seleccione un estudiante</option>
+                        </select>
+                    <div class="invalid-feedback">
+                        Por favor, seleccione un estudiante.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="gradeGroup" class="form-label">Grado y grupo atendido:</label>
+                    <input type="text" id="gradeGroup" name="gradeGroup" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Por favor, ingrese el grado y grupo.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="tutorName" class="form-label">Nombre del docente tutor:</label>
+                    <input type="text" id="tutorName" name="tutorName" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Por favor, ingrese el nombre del docente tutor.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="tutorEmail" class="form-label">Correo electrónico del docente tutor:</label>
+                    <input type="email" id="tutorEmail" name="tutorEmail" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Por favor, ingrese un correo electrónico válido.
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="tutorPhone" class="form-label">Número de teléfono del docente tutor:</label>
+                    <input type="tel" id="tutorPhone" name="tutorPhone" class="form-control">
+                </div>
+            </div>
+
+            <div class="table-responsive rounded shadow-sm border border-light mb-4">
+                <table class="table table-striped mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col" class="text-start text-uppercase text-muted small py-3 px-2" style="width: 33%;">Rasgo</th>
+                            <th scope="col" class="text-center text-uppercase text-muted small py-3 px-1">Excelente (4)</th>
+                            <th scope="col" class="text-center text-uppercase text-muted small py-3 px-1">Satisfactorio (3)</th>
+                            <th scope="col" class="text-center text-uppercase text-muted small py-3 px-1">Básico (2)</th>
+                            <th scope="col" class="text-center text-uppercase text-muted small py-3 px-1">Necesita mejorar (1)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">1. Presentación y puntualidad</p>
+                                <small class="text-muted">Siempre llega puntual, con presentación profesional impecable y materiales listos.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait1" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait1" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait1" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait1" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">2. Responsabilidad y organización</p>
+                                <small class="text-muted">Demuestra excelente organización en sus actividades y cumple todos sus compromisos.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait2" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait2" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait2" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait2" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">3. Planeación didáctica</p>
+                                <small class="text-muted">Presenta planeaciones completas, detalladas y con adaptaciones para la diversidad.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait3" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait3" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait3" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait3" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">4. Estrategias de mediación</p>
+                                <small class="text-muted">Implementa variedad de estrategias de mediación efectivas y diferenciadas.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait4" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait4" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait4" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait4" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">5. Control grupal</p>
+                                <small class="text-muted">Mantiene excelente control del grupo con estrategias positivas.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait5" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait5" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait5" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait5" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">6. Ambiente inclusivo</p>
+                                <small class="text-muted">Promueve constantemente un ambiente inclusivo y participativo.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait6" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait6" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait6" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait6" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">7. Ajustes razonables</p>
+                                <small class="text-muted">Implementa ajustes pertinentes y creativos según necesidades.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait7" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait7" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait7" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait7" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">8. Participación equitativa</p>
+                                <small class="text-muted">Promueve la participación activa de todo el alumnado.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait8" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait8" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait8" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait8" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">9. Comunicación con alumnos</p>
+                                <small class="text-muted">Comunicación clara, efectiva y adaptada a necesidades.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait9" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait9" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait9" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait9" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle px-2 py-3">
+                                <p class="fw-bold mb-0">10. Vinculación docente-tutor</p>
+                                <small class="text-muted">Mantiene comunicación constante y colaboración efectiva.</small>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait10" value="4" class="form-check-input" required>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait10" value="3" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait10" value="2" class="form-check-input">
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="form-check">
+                                    <input type="radio" name="trait10" value="1" class="form-check-input">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="bg-info-subtle p-4 rounded border border-info mb-4">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mb-3">
+                    <p class="h5 text-dark mb-2 mb-sm-0">Puntaje Total: <span id="totalScore" class="text-primary fs-3">0</span> / 40</p>
+                    <p class="h5 text-dark">Escala de Evaluación: <span id="evaluationScale" class="text-primary fs-3">N/A</span></p>
+                </div>
+                <div class="text-secondary small">
+                    <p class="fw-bold mb-1">Escala:</p>
+                    <ul class="list-unstyled ms-3">
+                        <li>&#8226; Excelente: 36-40 puntos</li>
+                        <li>&#8226; Satisfactorio: 30-35 puntos</li>
+                        <li>&#8226; Básico: 20-29 puntos</li>
+                        <li>&#8226; Necesita mejorar: &lt; 20 puntos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="observations" class="form-label">Observaciones y recomendaciones:</label>
+                <textarea id="observations" name="observations" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="opportunities" class="form-label">Áreas de oportunidad:</label>
+                <textarea id="opportunities" name="opportunities" rows="4" class="form-control"></textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" id="submitButton" class="btn btn-primary btn-lg px-5 py-3 shadow-sm transition-all duration-300 ease-in-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope-fill me-2" viewBox="0 0 16 16">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.756Zm6.43-.586L16 11.801V4.697l-5.803 3.546L13.19 8.244Z"/>
+                    </svg>
+                    Enviar Rúbrica
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center bg-dark bg-opacity-75 d-none" style="z-index: 1050;">
+        <div class="text-center">
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Enviando...</span>
+            </div>
+            <p class="text-white mt-3 fs-5">Enviando...</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigF/g/6PZp3Gg+K1o" crossorigin="anonymous"></script>
+
+    <script>
+        // Initialize EmailJS with your Public Key
+        // IMPORTANT: Replace 'YOUR_EMAILJS_PUBLIC_KEY' with your actual EmailJS Public Key
+        emailjs.init('bwrrgx6h0RfA1V3hS'); 
+
+        const form = document.getElementById('evaluationForm');
+        const totalScoreSpan = document.getElementById('totalScore');
+        const evaluationScaleSpan = document.getElementById('evaluationScale');
+        const submitButton = document.getElementById('submitButton');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        
+        // Get the Bootstrap modal instance
+        const messageModalElement = document.getElementById('messageModal');
+        const messageModal = new bootstrap.Modal(messageModalElement);
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+
+        // Elements for dynamic fields
+        const centroReceptorSelect = document.getElementById('centroReceptor');
+        const schoolDirectorInput = document.getElementById('schoolDirector');
+        const studentNameSelect = document.getElementById('studentName');
+
+        // Define student lists
+        const studentsIVAyuntamiento = [
+            "Chaparro Hernández, Andrea",
+            "Martínez Pérez, Mónica Patricia",
+            "Sánchez De la Rocha, Mireya Naiomy"
+        ];
+
+        const studentsJoaquinRamirez = [
+            "Covarrubias Ruiz, Arely Azucena",
+            "Gómez Gámez, América Vianey",
+            "López Aldama, Denisse",
+            "López León, Martha Cecilia",
+            "Luna Pérez, Maritza Marlén",
+            "Morales Ramírez, Miguel Ángel"
+        ];
+
+        // Function to update directivo based on selected centro receptor
+        function updateDirectorName() {
+            const selectedSchool = centroReceptorSelect.value;
+            if (selectedSchool === "Esc. Prim. 'Joaquín Ramírez Arballo'") {
+                schoolDirectorInput.value = "Carmen Briseida Sánchez González";
+            } else if (selectedSchool === "Esc. Prim. 'IV Ayuntamiento No. 2'") {
+                schoolDirectorInput.value = "Betzabé Guillermina Torres Rentería";
+            } else {
+                schoolDirectorInput.value = ""; // Clear if no valid selection
+            }
+            filterStudentNames(); // Call student filter when school changes
+        }
+
+        // Function to filter student names based on selected centro receptor
+        function filterStudentNames() {
+            // Clear existing options
+            studentNameSelect.innerHTML = '<option value="" disabled selected>Seleccione un estudiante</option>';
+            
+            const selectedSchool = centroReceptorSelect.value;
+            let studentsToDisplay = [];
+
+            if (selectedSchool === "Esc. Prim. 'IV Ayuntamiento No. 2'") {
+                studentsToDisplay = studentsIVAyuntamiento;
+            } else if (selectedSchool === "Esc. Prim. 'Joaquín Ramírez Arballo'") {
+                studentsToDisplay = studentsJoaquinRamirez;
+            }
+
+            // Populate the dropdown with filtered students
+            studentsToDisplay.forEach(student => {
+                const option = document.createElement('option');
+                option.value = student;
+                option.textContent = student;
+                studentNameSelect.appendChild(option);
+            });
+        }
+
+        // Add event listener for centroReceptor select
+        centroReceptorSelect.addEventListener('change', updateDirectorName);
+
+        // Function to calculate total score and update scale
+        function calculateScore() {
+            let totalScore = 0;
+            for (let i = 1; i <= 10; i++) {
+                const selectedOption = document.querySelector(`input[name="trait${i}"]:checked`);
+                if (selectedOption) {
+                    totalScore += parseInt(selectedOption.value);
+                }
+            }
+            totalScoreSpan.textContent = totalScore;
+            updateEvaluationScale(totalScore);
+        }
+
+        // Function to update evaluation scale based on total score
+        function updateEvaluationScale(score) {
+            let scale = 'N/A';
+            if (score >= 36) {
+                scale = 'Excelente';
+            } else if (score >= 30) {
+                scale = 'Satisfactorio';
+            } else if (score >= 20) {
+                scale = 'Básico';
+            } else {
+                scale = 'Necesita mejorar';
+            }
+            evaluationScaleSpan.textContent = scale;
+        }
+
+        // Add event listeners to all radio buttons to recalculate score on change
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', calculateScore);
+        });
+
+        // Initial calculation when the page loads
+        calculateScore();
+
+        // Function to show the modal
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            messageModal.show(); // Show the Bootstrap modal
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+            event.stopPropagation(); // Stop propagation for Bootstrap validation
+
+            // Bootstrap form validation
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return; // Exit if form is invalid
+            }
+
+            // Show loading overlay
+            loadingOverlay.classList.remove('d-none'); // Show loading overlay using Bootstrap class
+            submitButton.disabled = true; // Disable button to prevent multiple submissions
+
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Get selected rubric scores
+            const rubricScores = {};
+            for (let i = 1; i <= 10; i++) {
+                const selectedOption = document.querySelector(`input[name="trait${i}"]:checked`);
+                if (selectedOption) {
+                    rubricScores[`trait${i}`] = selectedOption.value;
+                } else {
+                    // If a trait is not selected, set it to 0 or handle as an error
+                    rubricScores[`trait${i}`] = '0';
+                }
+            }
+
+            // Prepare template parameters for EmailJS
+            const templateParams = {
+                centro_receptor: data.centroReceptor,
+                school_director: data.schoolDirector,
+                student_name: data.studentName,
+                grade_group: data.gradeGroup,
+                tutor_name: data.tutorName,
+                tutor_email: data.tutorEmail,
+                tutor_phone: data.tutorPhone || 'No proporcionado', // Optional field
+                total_score: totalScoreSpan.textContent,
+                evaluation_scale: evaluationScaleSpan.textContent,
+                observations: data.observations || 'No hay observaciones.',
+                opportunities: data.opportunities || 'No hay áreas de oportunidad.',
+                // Individual trait scores
+                trait1_score: rubricScores.trait1,
+                trait2_score: rubricScores.trait2,
+                trait3_score: rubricScores.trait3,
+                trait4_score: rubricScores.trait4,
+                trait5_score: rubricScores.trait5,
+                trait6_score: rubricScores.trait6,
+                trait7_score: rubricScores.trait7,
+                trait8_score: rubricScores.trait8,
+                trait9_score: rubricScores.trait9,
+                trait10_score: rubricScores.trait10,
+                // Recipient email for EmailJS template
+                to_email: 'profrjesusvasquez@gmail.com'
+            };
+
+            // Log template parameters to console for debugging
+            console.log('Datos enviados a EmailJS:', templateParams);
+
+            // Send email using EmailJS
+            try {
+                // IMPORTANT: Replace 'YOUR_EMAILJS_SERVICE_ID' and 'YOUR_EMAILJS_TEMPLATE_ID' with your actual EmailJS IDs
+                await emailjs.send('service_44s0hzy', 'template_68q3qa4', templateParams);
+                showModal('Éxito', 'La rúbrica ha sido enviada correctamente.');
+                form.reset(); // Clear the form after successful submission
+                calculateScore(); // Reset score display
+                form.classList.remove('was-validated'); // Remove validation styles
+                schoolDirectorInput.value = ""; // Clear director field after reset
+                filterStudentNames(); // Re-filter students after reset
+            } catch (error) {
+                console.error('Error al enviar la rúbrica:', error);
+                showModal('Error', 'Hubo un problema al enviar la rúbrica. Por favor, inténtelo de nuevo. Consulte la consola para más detalles.');
+            } finally {
+                // Hide loading overlay
+                loadingOverlay.classList.add('d-none'); // Hide loading overlay using Bootstrap class
+                submitButton.disabled = false; // Re-enable button
+            }
+        });
+
+        // Initial call to populate student names based on default/initial selection
+        // This ensures the student list is correct if a default option is pre-selected or if the user doesn't change the school.
+        filterStudentNames();
+    </script>
+</body>
+</html>
