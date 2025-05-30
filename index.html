@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Rúbricas de Evaluación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Definición de colores personalizados basados en el nuevo esquema verde */
+        :root {
+            --color-primary-green: #006400; /* Verde oscuro */
+            --color-accent-green: #3CB371;  /* Verde medio, complementario */
+        }
+
+        /* Configuración de Tailwind CSS para usar los colores personalizados y la fuente Inter */
+        /* Se añade el prefijo 'tw-' para evitar conflictos si se usa otro CSS */
+        .tw-bg-primary-green { background-color: var(--color-primary-green); }
+        .tw-text-primary-green { color: var(--color-primary-green); }
+        .tw-bg-accent-green { background-color: var(--color-accent-green); }
+        .tw-text-accent-green { color: var(--color-accent-green); }
+        .tw-border-primary-green { border-color: var(--color-primary-green); }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Un fondo gris claro para el cuerpo */
+            color: #333; /* Color de texto general */
+        }
+
+        /* Estilos adicionales para los efectos de las tarjetas */
+        .rubric-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .rubric-card:hover {
+            transform: translateY(-5px); /* Pequeño levantamiento al pasar el ratón */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+        }
+
+        /* Estilo para el botón de la rúbrica */
+        .rubric-button {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 9999px; /* Bordes completamente redondeados */
+            font-weight: 600; /* Semibold */
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            background-image: linear-gradient(to right, var(--color-accent-green), var(--color-primary-green)); /* Degradado */
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .rubric-button:hover {
+            transform: translateY(-2px); /* Pequeño levantamiento al pasar el ratón */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+            background-image: linear-gradient(to right, var(--color-primary-green), var(--color-accent-green)); /* Invertir degradado */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="tw-bg-primary-green text-white p-4 shadow-md">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="https://telesecundaria41.github.io/rubricas/LogoBENUNE_Trans.png" alt="Logo de la Benemérita Escuela Normal Urbana Nocturna del Estado" class="h-16 w-16 md:h-20 md:w-20 object-contain rounded-full border-2 border-white p-1 mr-4">
+                <h1 class="text-xl md:text-2xl font-bold text-center md:text-left leading-tight">
+                    Benemérita Escuela Normal Urbana Nocturna del Estado "Ing. José G. Valenzuela"
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12 tw-text-primary-green leading-tight">
+            Instrumentos de Evaluación Formativa
+        </h2>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="rubric-card bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center border tw-border-accent-green">
+                <img src="https://placehold.co/400x250/3CB371/ffffff?text=Práctica+Docente" alt="Imagen de Rúbrica de Práctica Docente" class="w-full h-48 object-cover rounded-lg mb-6 border border-gray-200">
+
+                <h3 class="text-2xl font-semibold mb-4 tw-text-primary-green">
+                    Rúbrica de Evaluación de Práctica Docente
+                </h3>
+
+                <p class="text-gray-600 mb-6 flex-grow">
+                    Herramienta clave para la valoración del desempeño pedagógico y didáctico en el aula.
+                </p>
+
+                <a href="r-practicasdocentes.html" class="rubric-button">
+                    Ver Rúbrica
+                </a>
+            </div>
+
+            <!--
+            <div class="rubric-card bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center border tw-border-accent-green">
+                <img src="https://placehold.co/400x250/006400/ffffff?text=Rúbrica+2" alt="Imagen de Rúbrica 2" class="w-full h-48 object-cover rounded-lg mb-6 border border-gray-200">
+                <h3 class="text-2xl font-semibold mb-4 tw-text-primary-green">
+                    Otra Rúbrica de Ejemplo
+                </h3>
+                <p class="text-gray-600 mb-6 flex-grow">
+                    Breve descripción de la segunda rúbrica.
+                </p>
+                <a href="otra-rubrica.html" class="rubric-button">
+                    Ver Rúbrica
+                </a>
+            </div>
+            -->
+        </section>
+    </main>
+
+    <footer class="tw-bg-primary-green text-white p-4 mt-8 text-center shadow-inner">
+        <p>&copy; 2023 Benemérita Escuela Normal Urbana Nocturna del Estado. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
