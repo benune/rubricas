@@ -52,21 +52,20 @@
         .table-rubric tbody tr:hover {
             background-color: #E0F2F7; /* Efecto hover en filas (se puede ajustar a un verde más claro si se desea) */
         }
-        .button-primary {
-            /* Aplicación de colores primarios y secundarios para el botón */
-            /* Se añade borde y efecto de crecimiento en hover */
-            @apply inline-flex items-center px-6 py-3 border-2 border-primary text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out transform hover:scale-105;
-        }
-        .card {
-            /* Se ajusta el ancho de la tarjeta para que los inputs sean más anchos */
-            @apply bg-white shadow-lg rounded-lg p-6 mb-8 w-11/12 mx-auto;
-        }
+        /* Las clases .button-primary, .card, .form-field ya no usan @apply */
         /* Estilo para los radio buttons */
         .radio-label {
-            @apply flex items-center cursor-pointer;
+            display: flex; /* Equivalente a @apply flex */
+            align-items: center; /* Equivalente a @apply items-center */
+            cursor: pointer; /* Equivalente a @apply cursor-pointer */
         }
         .radio-input {
-            @apply h-4 w-4 text-secondary focus:ring-secondary border-gray-300 rounded-full;
+            height: 1rem; /* Equivalente a @apply h-4 */
+            width: 1rem; /* Equivalente a @apply w-4 */
+            color: #2F855A; /* Equivalente a @apply text-secondary */
+            border-color: #D1D5DB; /* Equivalente a @apply border-gray-300 */
+            border-radius: 9999px; /* Equivalente a @apply rounded-full */
+            --tw-ring-color: #2F855A; /* Equivalente a @apply focus:ring-secondary */
         }
         /* Estilo para la fila de Puntuación Total */
         .total-score-row {
@@ -74,18 +73,6 @@
             font-size: 1.25rem; /* Tamaño de letra más grande */
             color: #800000; /* Guinda oscuro */
             font-weight: bold;
-        }
-        /* Estilo para los campos de formulario */
-        .form-field {
-            @apply block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm;
-        }
-        /* Ajuste para que los campos de datos generales ocupen todo el ancho de su columna */
-        .datos-generales-grid > div {
-            @apply col-span-2; /* Asegura que cada campo ocupe una columna por defecto */
-        }
-        /* Para el campo de teléfono, que ocupe dos columnas en pantallas medianas */
-        .datos-generales-grid .md\:col-span-2 {
-            @apply md:col-span-2;
         }
     </style>
 </head>
@@ -112,7 +99,7 @@
     </header>
 
     <main class="flex-grow container py-8">
-        <div class="card">
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-8 w-11/12 mx-auto">
             <h1 class="text-4xl font-extrabold text-text mb-4 text-center">
                 Rúbrica de Evaluación de Prácticas Docentes
             </h1>
@@ -122,10 +109,10 @@
 
             <div class="mb-8">
                 <h2 class="text-2xl font-bold text-text mb-4">Datos Generales</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid.cols-3 gap-4 text-lightText datos-generales-grid">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lightText">
                     <div>
                         <label for="centroReceptor" class="font-semibold text-text block mb-1">Centro Receptor:</label>
-                        <select id="centroReceptor" name="centroReceptor" class="form-field" onchange="updateDirectivo()">
+                        <select id="centroReceptor" name="centroReceptor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" onchange="updateDirectivo()">
                             <option value="">Seleccione un centro receptor</option>
                             <option value="joaquin_ramirez">Esc. Prim. "Joaquín Ramírez Arballo"</option>
                             <option value="iv_ayuntamiento">Esc. Prim. "IV Ayuntamiento No. 2"</option>
@@ -133,11 +120,11 @@
                     </div>
                     <div>
                         <label for="directivo" class="font-semibold text-text block mb-1">Directivo:</label>
-                        <input type="text" id="directivo" name="directivo" class="form-field" placeholder="Nombre del directivo del Centro Receptor" readonly>
+                        <input type="text" id="directivo" name="directivo" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Nombre del directivo del Centro Receptor" readonly>
                     </div>
                     <div>
                         <label for="nombrePracticante" class="font-semibold text-text block mb-1">Nombre del estudiante practicante:</label>
-                        <select id="nombrePracticante" name="nombrePracticante" class="form-field">
+                        <select id="nombrePracticante" name="nombrePracticante" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
                             <option value="">Seleccione un estudiante</option>
                             <option value="estudiante1">Estudiante A</option>
                             <option value="estudiante2">Estudiante B</option>
@@ -146,23 +133,23 @@
                     </div>
                     <div>
                         <label for="gradoGrupo" class="font-semibold text-text block mb-1">Grado y grupo atendido:</label>
-                        <input type="text" id="gradoGrupo" name="gradoGrupo" class="form-field" placeholder="Ej: 3ro A">
+                        <input type="text" id="gradoGrupo" name="gradoGrupo" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Ej: 3ro A">
                     </div>
                     <div>
                         <label for="docenteTutor" class="font-semibold text-text block mb-1">Nombre del docente tutor:</label>
-                        <input type="text" id="docenteTutor" name="docenteTutor" class="form-field" placeholder="Nombre del docente tutor">
+                        <input type="text" id="docenteTutor" name="docenteTutor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Nombre del docente tutor">
                     </div>
                     <div>
                         <label for="emailTutor" class="font-semibold text-text block mb-1">Correo electrónico del docente tutor:</label>
-                        <input type="email" id="emailTutor" name="emailTutor" class="form-field" placeholder="correo@ejemplo.com">
+                        <input type="email" id="emailTutor" name="emailTutor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="correo@ejemplo.com">
                     </div>
-                    <div class="md:col-span-2"> 
+                    <div> 
                         <label for="telefonoTutor" class="font-semibold text-text block mb-1">Número de teléfono del docente tutor:</label>
-                        <input type="tel" id="telefonoTutor" name="telefonoTutor" class="form-field" placeholder="Ej: +52 123 456 7890">
+                        <input type="tel" id="telefonoTutor" name="telefonoTutor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Ej: +52 123 456 7890">
                     </div>
                     <div>
                         <label for="fecha" class="font-semibold text-text block mb-1">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha" class="form-field">
+                        <input type="date" id="fecha" name="fecha" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
                     </div>
                 </div>
             </div>
@@ -473,16 +460,16 @@
 
             <div class="mb-8">
                 <h2 class="text-2xl font-bold text-text mb-4">Observaciones</h2>
-                <textarea class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition duration-300 ease-in-out" rows="5" placeholder="Escribe aquí tus observaciones..."></textarea>
+                <textarea class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary transition duration-300 ease-in-out" rows="5" placeholder="Escribe aquí tus observaciones..."></textarea>
             </div>
 
             <div class="mb-8">
                 <h2 class="text-2xl font-bold text-text mb-4">Áreas de Oportunidad</h2>
-                <textarea class="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary transition duration-300 ease-in-out" rows="5" placeholder="Escribe aquí las áreas de oportunidad..."></textarea>
+                <textarea class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary transition duration-300 ease-in-out" rows="5" placeholder="Escribe aquí las áreas de oportunidad..."></textarea>
             </div>
 
             <div class="text-center">
-                <button class="button-primary">
+                <button class="inline-flex items-center px-6 py-3 border-2 border-primary text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out transform hover:scale-105">
                     <i class="fas fa-envelope mr-2"></i> Enviar Rúbrica
                 </button>
             </div>
