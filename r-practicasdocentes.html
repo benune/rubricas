@@ -161,7 +161,7 @@
                         </div>
                         <div> 
                             <label for="telefonoTutor" class="font-semibold text-lightText block mb-1">Número de teléfono del docente tutor:</label>
-                            <input type="tel" id="telefonoTutor" name="telefonoTutor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Ej: +52 123 456 7890" required>
+                            <input type="tel" id="telefonoTutor" name="telefonoTutor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Ej: (123) 456 7890" required>
                         </div>
                         <div>
                             <label for="fecha" class="font-semibold text-lightText block mb-1">Fecha:</label>
@@ -514,7 +514,7 @@
             <div id="statusMessage" class="mt-4 text-center text-lg font-semibold" style="display: none;"></div>
             
         </div>
-        <div id="formErrorMessage" class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md" style="display: none;">
+        <div id="formErrorMessage" class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md text-center" style="display: none;">
             Por favor, complete todos los campos obligatorios marcados en color rojo y marque todos los aspectos de la rúbrica.
         </div>
     </main>
@@ -590,7 +590,7 @@
             }
 
             if (!isValid) {
-                formErrorMessage.textContent = 'Por favor, complete todos los campos obligatorios y marque todos los aspectos de la rúbrica.';
+                formErrorMessage.textContent = 'Por favor, complete todos los campos obligatorios marcados en color rojo y marque todos los aspectos de la rúbrica.';
                 formErrorMessage.style.display = 'block';
             }
 
@@ -679,7 +679,7 @@
                 const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
                 console.log('Correo enviado con éxito:', response.status, response.text);
                 statusMessage.style.color = 'green';
-                statusMessage.textContent = 'Rúbrica enviada con éxito. ¡Gracias!';
+                statusMessage.textContent = 'Rúbrica enviada con éxito. ¡Gracias! Un mensaje al correo electrónico proporcionado le llegará en breve confirmando su envío.';
                 statusMessage.style.display = 'block';
                 rubricForm.reset(); // Limpia el formulario después del envío exitoso
                 updateFieldsBasedOnCentroReceptor(); //Limpiar Estudiantes y Directivo
@@ -687,13 +687,6 @@
 
                 document.querySelectorAll('.border-red-500').forEach(el => el.classList.remove('border-red-500'));
                 document.querySelectorAll('.bg-red-50').forEach(el => el.classList.remove('bg-red-50'));
-
-
-                // Opcional: Limpiar el formulario después del envío exitoso
-                // document.getElementById('rubricForm').reset(); // Si envolvieras todo en un <form>
-                // O limpiar manualmente los campos relevantes:
-                // document.getElementById('centroReceptor').value = '';
-                // ... (limpiar otros campos si es necesario) ...
 
             } catch (error) {
                 console.error('Error al enviar el correo:', error);
