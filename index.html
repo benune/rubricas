@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Rúbricas de Evaluación</title>
+    <link rel="icon" type="image/png" href="./LogoBENUNE_WhiteCircleBG.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Definición de colores personalizados basados en el nuevo esquema verde */
         :root {
@@ -25,6 +26,11 @@
             font-family: 'Inter', sans-serif;
             background-color: #f0f2f5; /* Un fondo gris claro para el cuerpo */
             color: #333; /* Color de texto general */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
         }
 
         /* Estilos adicionales para los efectos de las tarjetas */
@@ -57,17 +63,25 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
-
-    <header class="text-white p-4 shadow-md" style="background-color:#1A472A">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
-            <div class="flex items-center mb-4 md:mb-0">
-                <img src="./LogoBENUNE_Trans.png" alt="Logo de la Benemérita Escuela Normal Urbana Nocturna del Estado" class="h-16 w-16 md:h-20 md:w-20 object-contain p-1 mr-4">
-                <h1 class="text-xl md:text-2xl font-bold text-center md:text-left leading-tight">
-                    Benemérita Escuela Normal Urbana Nocturna del Estado <br>
-                    "Ing. José G. Valenzuela"
-                </h1>
+<body class="flex flex-col min-h-screen">
+    <header class="tw-bg-primary-green text-white shadow-md py-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center">
+                <img src="./LogoBENUNE_WhiteCircleBG.png" alt="Logo de la Benemérita Escuela Normal Urbana Nocturna del Estado" class="h-18 w-18 md:h-24 md:w-24 object-contain mr-4" onerror="this.onerror=null;this.src='https://placehold.co/64x64/E0F2F7/1A472A?text=Logo';">
+                <div class="flex flex-col">
+                    <span class="text-2xl font-bold tracking-tight">
+                        Benemérita Escuela Normal Urbana Nocturna del Estado
+                    </span>
+                    <span class="text-xl">
+                    Ing. José G. Valenzuela
+                    </span>                
+                </div>
             </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="https://benune.github.io/rubricas/index.html" class="hover:text-accent transition duration-300">Otras rúbricas</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -85,10 +99,10 @@
                 </h3>
 
                 <p class="text-gray-600 mb-6 flex-grow">
-                    Instrumento para la valoración del desempeño de los estudiantes en Jornada de Observación dirigido a <b>Docentes Tutores.</b> 
+                    Instrumento para la valoración del desempeño de los estudiantes en <i>Jornada de Observación y Ayudantía</i> dirigido a <b>Docentes Tutores.</b> 
                 </p>
 
-                <a href="r-practicasdocentes.html" class="rubric-button">
+                <a href="#" class="rubric-button">
                     Ver Rúbrica
                 </a>
             </div>
@@ -100,26 +114,40 @@
                 </h3>
 
                 <p class="text-gray-600 mb-6 flex-grow">
-                    Instrumento clave para la valoración del desempeño de los estudiantes en su práctica docente dirigido a <b>Docentes Tutores.</b> 
+                    Instrumento clave para la valoración del desempeño de los estudiantes en su <i>Jornada de Práctica Docente</i> dirigido a <b>Docentes Tutores.</b> 
                 </p>
 
                 <a href="r-practicasdocentes.html" class="rubric-button">
                     Ver Rúbrica
                 </a>
             </div>
-            <!--
-            <div class="rubric-card bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center border tw-border-accent-green">
-                <img src="https://placehold.co/400x250/006400/ffffff?text=Rúbrica+2" alt="Imagen de Rúbrica 2" class="w-full h-48 object-cover rounded-lg mb-6 border border-gray-200">
-                <h3 class="text-2xl font-semibold mb-4 tw-text-primary-green">
-                    Otra Rúbrica de Ejemplo
-                </h3>
-                <p class="text-gray-600 mb-6 flex-grow">
-                    Breve descripción de la segunda rúbrica.
-                </p>
-                <a href="otra-rubrica.html" class="rubric-button">
-                    Ver Rúbrica
-                </a>
-            </div>
+            <!-- 
+                <div class="rubric-card bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center border tw-border-accent-green">
+                    <img src="https://placehold.co/400x250/006400/ffffff?text=Rúbrica+2" alt="Imagen de Rúbrica 2" class="w-full h-48 object-cover rounded-lg mb-6 border border-gray-200">
+                    <h3 class="text-2xl font-semibold mb-4 tw-text-primary-green">
+                        Otra Rúbrica de Ejemplo
+                    </h3>
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        Breve descripción de la segunda rúbrica.
+                    </p>
+                    <a href="otra-rubrica.html" class="rubric-button">
+                        Ver Rúbrica
+                    </a>
+                </div> 
+            -->
+            <!--             
+                <div class="rubric-card bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center border tw-border-accent-green">
+                    <img src="https://placehold.co/400x250/006400/ffffff?text=Rúbrica+2" alt="Imagen de Rúbrica 2" class="w-full h-48 object-cover rounded-lg mb-6 border border-gray-200">
+                    <h3 class="text-2xl font-semibold mb-4 tw-text-primary-green">
+                        Otra Rúbrica de Ejemplo
+                    </h3>
+                    <p class="text-gray-600 mb-6 flex-grow">
+                        Breve descripción de la segunda rúbrica.
+                    </p>
+                    <a href="otra-rubrica.html" class="rubric-button">
+                        Ver Rúbrica
+                    </a>
+                </div> 
             -->
         </section>
     </main>
