@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rúbrica de Evaluación para Estudiantes en Observación y Ayudantía</title>
+    <link rel="icon" type="image/png" href="./LogoBENUNE_WhiteCircleBG.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // NUEVA LÍNEA: Inicializar EmailJS con tu Public Key
+        (function() {
+            emailjs.init({
+                publicKey: "bwrrgx6h0RfA1V3hS", // ¡REEMPLAZA ESTO CON TU CLAVE PÚBLICA DE EMAILJS!
+            });
+        })();
+    </script>    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Nuevos colores en tonos verde oscuro
+                        primary: '#1A472A', // Verde oscuro para el encabezado y botón
+                        secondary: '#2F855A', // Verde medio para interacciones del botón
+                        accent: '#F6AD55', // Naranja/Dorado para acentos (puede mantenerse o cambiar a un verde más claro)
+                        background: '#F0F2F5', // Fondo Gris claro para el cuerpo
+                        text: '#1A472A', // Verde oscuro para texto general (se mantiene para legibilidad)
+                        lightText: '#4A5568', // Gris medio para texto secundario (se mantiene para legibilidad)
+                        maroon: '#800000', // Guinda oscuro para resaltar
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para la tabla y otros elementos */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F2F5; /* Fondo claro con tinte gris */
+            color: #2D3748; /* Texto oscuro */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        .table-rubric th, .table-rubric td {
+            padding: 1rem;
+            border-bottom: 1px solid #777c86; /* Borde gris claro */
+            text-align: left;
+        }
+        .table-rubric th {
+            background-color: #1A472A; /* Fondo de encabezado verde oscuro para la fila */
+            font-weight: 600;
+            color: #D1D5DB; /* Gris claro para el texto */
+            text-align:center; /* Encabezado de tabla centrado */
+        }
+        .table-rubric tbody tr:hover {
+            background-color: #e0f7e3; /* Efecto hover en filas (se puede ajustar a un verde más claro si se desea) */
+        }
+        /* Las clases .button-primary, .card, .form-field ya no usan @apply */
+        /* Estilo para los radio buttons */
+        .radio-label {
+            display: flex; /* Equivalente a @apply flex */
+            align-items: center; /* Equivalente a @apply items-center */
+            cursor: pointer; /* Equivalente a @apply cursor-pointer */
+        }
+        .radio-input {
+            height: 1rem; /* Equivalente a @apply h-4 */
+            width: 1rem; /* Equivalente a @apply w-4 */
+            color: #2F855A; /* Equivalente a @apply text-secondary */
+            border-color: #D1D5DB; /* Equivalente a @apply border-gray-300 */
+            border-radius: 9999px; /* Equivalente a @apply rounded-full */
+            --tw-ring-color: #2F855A; /* Equivalente a @apply focus:ring-secondary */
+        }
+        /* Estilo para la fila de Puntuación Total */
+        .total-score-row {
+            background-color: #1A472A; /* Fondo verde oscuro para la fila */
+            font-size: 1.25rem; /* Tamaño de letra más grande */
+            color: #D1D5DB; /* Gris claro para el texto */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="bg-primary text-white shadow-md py-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center">
+                <img src="./LogoBENUNE_WhiteCircleBG.png" alt="Logo BENUNE" class="h-10 w-10 sm: h-14 w-14 md:h-24 md:w-24 object-contain mr-4" onerror="this.onerror=null;this.src='https://placehold.co/64x64/E0F2F7/1A472A?text=Logo';">
+                <div class="flex flex-col">
+                    <span class="text-2xl font-bold tracking-tight">
+                        Benemérita Escuela Normal Urbana Nocturna del Estado
+                    </span>
+                    <span class="text-xl">
+                        Ing. José G. Valenzuela
+                    </span>
+                </div>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="https://benune.github.io/rubricas/index.html" class="hover:text-accent transition duration-300">Otras rúbricas</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container py-8">
+        <!-- Título Principal -->
+        <h2 class="text-4xl md:text-5xl font-extrabold text-center text-primary leading-tight">
+            Rúbrica de Evaluación para Estudiante en Observación y Ayudantía
+        </h2>
+        <h3 class="text-lg md:text-xl font-medium text-center mb-12 text-lightText leading-tight">
+            Instrumento para la evaluación del desempeño de los estudiantes en su Jornada de Observación y Ayudantía, dirigido a Docentes Tutores.
+        </h3>
+        
+        <!-- Contenedor Principal -->
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-8 w-11/12 mx-auto">
+            <form id="rubricForm">
+                <div class="mb-8">
+                   
+                    <!-- Subtítulo para los Datos Generales-->
+                    <h2 class="text-2xl font-bold text-text mb-4">Datos Generales</h2>
+                    
+                    <!-- Campos para selección y captura -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lightText">
+                        <div>
+                            <label for="centroReceptor" class="font-semibold text-lightText block mb-1">Centro Receptor:</label>
+                            <select id="centroReceptor" name="centroReceptor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" onchange="updateFieldsBasedOnCentroReceptor()" required>
+                                <option value="">Seleccione un centro receptor</option>
+                                <option value="Esc. Prim. 'Joaquín Ramírez Arballo'">Esc. Prim. 'Joaquín Ramírez Arballo'</option>
+                                <option value="Esc. Prim. 'IV Ayuntamiento No. 2'">Esc. Prim. 'IV Ayuntamiento No. 2'</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="directivo" class="font-semibold text-lightText block mb-1">Directivo:</label>
+                            <input type="text" id="directivo" name="directivo" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Nombre del directivo del Centro Receptor" readonly>
+                        </div>
+                        <div>
+                            <label for="nombrePracticante" class="font-semibold text-lightText block mb-1">Nombre del estudiante practicante:</label>
+                            <select id="nombrePracticante" name="nombrePracticante" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" required>
+                                <option value="">Seleccione un estudiante</option>
+                                <!-- Se cargarán las opciones dinámicamente mediante JS -->
+                            </select>
+                        </div>
+                        <div>
+                            <label for="gradoGrupo" class="font-semibold text-lightText block mb-1">Grado y grupo de observación:</label>
+                            <input type="text" id="gradoGrupo" name="gradoGrupo" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Ej: 3ro A" required>
+                        </div>
+                        <div>
+                            <label for="docenteTutor" class="font-semibold text-lightText block mb-1">Nombre del docente tutor:</label>
+                            <input type="text" id="docenteTutor" name="docenteTutor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Ej: Profr. Juan López" required>
+                        </div>
+                        <div>
+                            <label for="emailTutor" class="font-semibold text-lightText block mb-1">Correo electrónico del docente tutor:</label>
+                            <input type="email" id="emailTutor" name="emailTutor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Ej: correo@gmail.com" required>
+                        </div>
+                        <div> 
+                            <label for="telefonoTutor" class="font-semibold text-lightText block mb-1">Número de teléfono del docente tutor:</label>
+                            <input type="tel" id="telefonoTutor" name="telefonoTutor" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="Ej: (123) 456 7890" required>
+                        </div>
+                        <div>
+                            <label for="fecha" class="font-semibold text-lightText block mb-1">Fecha:</label>
+                            <input type="date" id="fecha" name="fecha" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subtítulo para la rúbrica -->
+                <h2 class="text-2xl font-bold text-text mb-4">Niveles de Desempeño</h2>
+                <p class="text-lg font-medium text-lightText mb-4">
+                    INSTRUCCIONES: Marque el nivel de desempeño que mejor describa la actuación del estudiante practicante durante su jornada de práctica docente. Desplázate horizontalmente y verticalmente para ver todas las opciones.
+                </p>
+
+                <div class="overflow-x-auto rounded-lg shadow-md mb-8">
+                    <table class="min-w-full bg-white table-rubric">
+                        <thead>
+                            <tr>
+                                <th class="rounded-tl-lg">Aspectos a Evaluar</th>
+                                <th>Excelente (4)</th>
+                                <th>Satisfactorio (3)</th>
+                                <th>Regular (2)</th>
+                                <th class="rounded-tr-lg">Necesita mejorar (1)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold text-lightText">1. Presentación y Puntualidad</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto1" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Siempre se presenta puntualmente, con vestimenta apropiada y profesional. Mantiene una excelente higiene personal y postura profesional.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto1" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Generalmente se presenta puntual, con vestimenta adecuada y buena presentación personal.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto1" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Ocasionalmente llega tarde o su presentación personal requiere ajustes menores.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto1" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Frecuentemente llega tarde o su presentación personal no es apropiada para el contexto escolar.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">2. Disposición y actitud</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto2" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Muestra iniciativa constante, entusiasmo y alta motivación. Siempre está dispuesto a colaborar y aprender.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto2" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Demuestra buena disposición y actitud positiva en la mayoría de las actividades.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto2" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Muestra disposición variable, requiere ocasionalmente motivación externa.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto2" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Muestra poco interés o disposición negativa hacia las actividades.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">3. Habilidades de observación y registro</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto3" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Registra detalladamente las observaciones, identifica elementos clave y establece relaciones pertinentes.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto3" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Mantiene registros adecuados y logra identificar aspectos relevantes.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto3" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Registra información básica pero omite detalles importantes.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto3" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Sus registros son superficiales o incompletos.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">4. Interacción con el personal escolar</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto4" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Establece relaciones profesionales respetuosas y colaborativas con todo el personal. Muestra excelente comunicación.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto4" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Mantiene buenas relaciones profesionales y comunicación adecuada con el personal.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto4" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Interactúa de manera básica, limitándose a lo necesario.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto4" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Muestra dificultades para relacionarse o comunicarse profesionalmente.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">5. Interacción con los estudiantes</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto5" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Establece rapport positivo con los estudiantes, manteniendo límites profesionales apropiados.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto5" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Interactúa adecuadamente con los estudiantes, respetando las normas escolares.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto5" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Sus interacciones son limitadas o muestra inseguridad.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto5" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Tiene dificultades para interactuar apropiadamente con los estudiantes.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">6. Participación en actividades de ayudantía</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto6" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Participa proactivamente en las actividades asignadas, aportando ideas y mostrando iniciativa.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto6" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Cumple satisfactoriamente con las actividades de apoyo asignadas.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto6" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Participa solo cuando se le solicita directamente.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto6" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Muestra resistencia o poco interés en participar.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">7. Capacidad de análisis y reflexión</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto7" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Realiza observaciones críticas y reflexivas, estableciendo conexiones con la teoría.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto7" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Analiza adecuadamente las situaciones observadas y plantea reflexiones pertinentes.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto7" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Sus análisis son superficiales o poco fundamentados.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto7" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Muestra dificultad para analizar y reflexionar sobre la práctica.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">8. Manejo de documentación</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto8" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Mantiene ordenada y completa toda la documentación requerida, cumpliendo con los formatos establecidos.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto8" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Mantiene su documentación organizada con pocos elementos faltantes.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto8" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Su documentación está incompleta o parcialmente organizada.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto8" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Su documentación está desorganizada o muy incompleta.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">9. Toma de decisiones y resolución de conflictos</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto9" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Identifica situaciones que requieren intervención y actúa apropiadamente, consultando cuando es necesario.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto9" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Toma decisiones adecuadas en situaciones cotidianas del aula.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto9" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Muestra inseguridad en la toma de decisiones o requiere constante supervisión.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto9" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Evita tomar decisiones o las toma inapropiadamente.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold text-lightText">10. Ética profesional</td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto10" value="4" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Demuestra alto nivel de confidencialidad, respeto y profesionalismo en todas sus acciones.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto10" value="3" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Mantiene una conducta ética y profesional en la mayoría de situaciones.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto10" value="2" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Ocasionalmente requiere orientación sobre conducta profesional.</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="radio-label">
+                                        <input type="radio" name="aspecto10" value="1" class="radio-input" onchange="calculateTotalScore()">
+                                        <span class="ml-2">Muestra fallas significativas en su conducta profesional.</span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-lightText">
+                        <div class="py-2 px-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary transition duration-300 ease-in-out">
+                            <h2 class="text-2xl font-bold text-text mb-4 text-center">Escala de Evaluación</h2>
+                            <ul class="list-disc list-inside text-lightText space-y-1 px-6">
+                                <li>35-40 puntos: <b>Excelente</b></li>
+                                <li>25-34 puntos: <b>Satisfactorio</b></li>
+                                <li>15-24 puntos: <b>Regular</b></li>
+                                <li>10-15 puntos: <b>Necesita mejorar</b></li>
+                            </ul>
+                        </div>
+                        <div class="py-2 px-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary transition duration-300 ease-in-out">
+                            <h2 class="text-2xl font-bold text-text mb-4 text-center">
+                                Puntuación Total
+                            </h2>
+                            <h2 class="text-2xl font-bold text-lightText mb-6 text-center">
+                                <span id="totalScore">0 de 40</span>
+                            </h2>
+                        </div>
+                        <div class="py-2 px-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary transition duration-300 ease-in-out">
+                            <h2 class="text-2xl font-bold text-text mb-4 text-center">
+                                Nivel de Desempeño
+                            </h2>
+                            <h2 class="text-2xl font-bold text-lightText mb-6 text-center">
+                                <span id="performanceLevel"></span>
+                            </h2>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-text mb-4">Observaciones y recomendaciones</h2>
+                    <textarea class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary transition duration-300 ease-in-out" rows="5" placeholder="Escribe aquí tus observaciones..." name="observaciones" required></textarea>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-text mb-4">Áreas de Oportunidad</h2>
+                    <textarea class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary transition duration-300 ease-in-out" rows="5" placeholder="Escribe aquí las áreas de oportunidad..." name="areas_oportunidad" required></textarea>
+                </div>
+            </form>
+
+
+            <div class="text-center">
+                <button id="sendRubricBtn" class="inline-flex items-center px-6 py-3 border-2 border-primary text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-300 ease-in-out transform hover:scale-105">
+                    Enviar Rúbrica 
+                </button>
+            </div>
+            <!-- Contenedor para mensajes de estado (Este 'div' mostrará si el envío fue exitoso o falló) -->
+            <div id="statusMessage" class="mt-4 text-center text-lg font-semibold" style="display: none;"></div>
+            
+        </div>
+        <div id="formErrorMessage" class="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-md text-center" style="display: none;">
+            Por favor, complete todos los campos obligatorios marcados en color rojo y marque todos los aspectos de la rúbrica.
+        </div>
+    </main>
+
+    <footer class="bg-primary text-white py-6 mt-auto">
+        <div class="container text-center text-sm shadow-inner">
+            <p>&copy; 2025 Benemérita Escuela Normal Urbana Nocturna del Estado <i>"Ing. José G. Valenzuela".</i> <br><b>Todos los derechos reservados.</b></p>
+        </div>
+    </footer>
+
+    <script>
+        // *** CONFIGURACIÓN DE EMAILJS ***
+        const SERVICE_ID = "service_44s0hzy";    // Ejemplo: "service_xxxxxxx"
+        const TEMPLATE_ID = "template_e75pfhc";  // Ejemplo: "template_yyyyyyy"
+        const PUBLIC_KEY = "bwrrgx6h0RfA1V3hS";     // Este ya lo inicializaste en el <head>
+                                                    // Si lo inicializaste arriba, esta constante es solo para claridad.
+                                                    // Si no, debes ponerlo aquí: const PUBLIC_KEY = "xxxxxxxxxxxxxxxxxxx";
+
+        // Asegúrate de que EmailJS se ha inicializado en el <head> como se indicó en el punto 1.
+        // Si no lo hiciste, puedes inicializarlo aquí:
+        // (function() {
+        //    emailjs.init({
+        //        publicKey: PUBLIC_KEY,
+        //    });
+        // })();
+
+        function validateRubricForm() {
+            const formErrorMessage = document.getElementById('formErrorMessage');
+            let isValid = true; // Asumimos que es válido al principio
+
+            // Oculta cualquier mensaje de error anterior
+            formErrorMessage.style.display = 'none';
+            formErrorMessage.textContent = ''; // Limpia el texto
+
+            // 1. Validar campos de texto, select y textarea con el atributo 'required'
+            // El navegador ya maneja esto, pero podemos añadir un extra check con JS
+            const requiredFields = document.querySelectorAll('#rubricForm [required]');
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    // Los radios se validarán aparte
+                    return;
+                }
+                if (field.value.trim() === '') {
+                    isValid = false;
+                    // Opcional: podrías añadir una clase para resaltar el campo si no es válido
+                    field.classList.add('border-red-500');
+                } else {
+                    field.classList.remove('border-red-500'); // Limpia el resaltado si es válido
+                }
+            });
+
+            // 2. Validar los grupos de radio (aspectos de la rúbrica)
+            for (let i = 1; i <= 10; i++) {
+                const radioGroup = document.querySelector(`input[name="aspecto${i}"]:checked`);
+                if (!radioGroup) {
+                    isValid = false;
+                    // Opcional: podrías resaltar la fila de la tabla o un elemento cercano para indicar el error
+                    // Por ejemplo, añadiendo una clase a la fila:
+                    const row = document.querySelector(`input[name="aspecto${i}"]`).closest('tr');
+                    if (row) {
+                        row.classList.add('bg-red-50'); // Fondo rojizo para la fila no seleccionada
+                    }
+                } else {
+                    const row = document.querySelector(`input[name="aspecto${i}"]`).closest('tr');
+                    if (row) {
+                        row.classList.remove('bg-red-50'); // Quita el fondo rojizo
+                    }
+                }
+            }
+
+            if (!isValid) {
+                formErrorMessage.textContent = 'Por favor, complete todos los campos obligatorios marcados en color rojo y marque todos los aspectos de la rúbrica.';
+                formErrorMessage.style.display = 'block';
+            }
+
+            return isValid;
+        }
+
+        // Función auxiliar para obtener el texto de la opción de radio seleccionada
+        function getRadioSelectionText(name) {
+            const radio = document.querySelector(`input[name="${name}"]:checked`);
+            if (radio) {
+                // El texto está en el span hermano del input dentro del label
+                const label = radio.closest('label');
+                return label ? label.querySelector('span').textContent.trim() : '';
+            }
+            return 'No seleccionado';
+        }
+
+        // Función para enviar la rúbrica por correo electrónico
+        async function sendRubric() {
+            const sendBtn = document.getElementById('sendRubricBtn');
+            const statusMessage = document.getElementById('statusMessage');
+            const rubricForm = document.getElementById('rubricForm');
+            const formErrorMessage = document.getElementById('formErrorMessage'); // Obtener referencia al mensaje de error
+
+            // Ocultar mensajes de éxito/error anteriores al intentar un nuevo envío
+            statusMessage.style.display = 'none';
+            formErrorMessage.style.display = 'none';
+            
+            // *** NUEVA LÍNEA: Validar el formulario antes de enviar ***
+            if (!validateRubricForm()) {
+                // Si la validación falla, detenemos la ejecución de la función
+                // Restauramos el botón ya que no se llegó al envío
+                sendBtn.innerHTML = '<i class="fas fa-envelope mr-2"></i>Enviar Rúbrica'; // Sin spinner si no se valida
+                sendBtn.disabled = false;
+                return;
+            }
+
+            // Mostrar spinner y deshabilitar botón
+            sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+            sendBtn.disabled = true;
+
+            // 1. Recolectar datos de la rúbrica
+            const centroReceptor = document.getElementById('centroReceptor').value;
+            const directivo = document.getElementById('directivo').value;
+            const nombrePracticante = document.getElementById('nombrePracticante').value;
+            const gradoGrupo = document.getElementById('gradoGrupo').value;
+            const docenteTutor = document.getElementById('docenteTutor').value;
+            const emailTutor = document.getElementById('emailTutor').value;
+            const telefonoTutor = document.getElementById('telefonoTutor').value;
+            const fecha = document.getElementById('fecha').value;
+            const observaciones = document.querySelector('textarea:nth-of-type(1)').value; // Primer textarea
+            const areasOportunidad = document.querySelector('textarea:nth-of-type(1)').value; // Segundo textarea
+
+            // Datos de la puntuación total
+            const totalScoreText = document.getElementById('totalScore').textContent; // "X de 40"
+            const performanceLevel = document.getElementById('performanceLevel').textContent;
+
+            // Recolectar puntajes y descripciones de cada aspecto
+            const aspectsData = {};
+            for (let i = 1; i <= 10; i++) {
+                aspectsData[`aspecto${i}_score`] = document.querySelector(`input[name="aspecto${i}"]:checked`) ? document.querySelector(`input[name="aspecto${i}"]:checked`).value : '0';
+                aspectsData[`aspecto${i}_desc`] = getRadioSelectionText(`aspecto${i}`);
+            }
+
+            // 2. Preparar los parámetros de la plantilla de EmailJS
+            // Los nombres de las propiedades aquí deben coincidir con las variables en tu plantilla de EmailJS (ej. {{centro_receptor}})
+            const templateParams = {
+                centro_receptor: centroReceptor,
+                directivo: directivo,
+                nombre_practicante: nombrePracticante,
+                grado_grupo: gradoGrupo,
+                docente_tutor: docenteTutor,
+                email_tutor: emailTutor,
+                telefono_tutor: telefonoTutor || 'No se ingresó un número de teléfono.',
+                fecha: fecha,
+                observaciones: observaciones || 'No se ingresaron observaciones.',
+                areas_oportunidad: areasOportunidad || 'No se describieron áreas de oportunidad.',
+                total_score: totalScoreText,
+                performance_level: performanceLevel,
+                to_email: 'profrjesusvasquez@gmail.com',
+                ...aspectsData // Incluye dinámicamente los datos de los 10 aspectos
+            };
+
+            // 3. Enviar el correo usando EmailJS
+            try {
+                const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+                console.log('Correo enviado con éxito:', response.status, response.text);
+                statusMessage.style.color = 'green';
+                statusMessage.textContent = 'Rúbrica enviada con éxito. ¡Gracias! Un mensaje al correo electrónico proporcionado le llegará en breve confirmando su envío.';
+                statusMessage.style.display = 'block';
+                rubricForm.reset(); // Limpia el formulario después del envío exitoso
+                updateFieldsBasedOnCentroReceptor(); //Limpiar Estudiantes y Directivo
+                calculateTotalScore(); // Reseta la puntuación 
+
+                document.querySelectorAll('.border-red-500').forEach(el => el.classList.remove('border-red-500'));
+                document.querySelectorAll('.bg-red-50').forEach(el => el.classList.remove('bg-red-50'));
+
+            } catch (error) {
+                console.error('Error al enviar el correo:', error);
+                statusMessage.style.color = 'red';
+                statusMessage.textContent = 'Error al enviar la rúbrica. Por favor, inténtelo de nuevo.';
+                statusMessage.style.display = 'block';
+                formErrorMessage.textContent = 'Error de red o del servicio de envío. Por favor, intente más tarde.';
+                formErrorMessage.style.display = 'block';
+            } finally {
+                // Volver a habilitar el botón y restaurar su texto
+                sendBtn.innerHTML = '<i class="fas fa-envelope mr-2"></i> Enviar Rúbrica'; // Se agregó el ícono de nuevo
+                sendBtn.disabled = false;
+            }
+        }
+
+        
+        /**
+         * Calculates the total score based on the selected radio buttons
+         * and updates the 'totalScore' element and 'performanceLevel' element in the HTML.
+         */
+        function calculateTotalScore() {
+            let totalScore = 0;
+            const maxPossibleScore = 40; // 10 aspects * 4 points each
+
+            // Get all radio buttons that are checked
+            const checkedRadios = document.querySelectorAll('input[type="radio"]:checked');
+
+            // Iterate over the checked radio buttons and sum their values
+            checkedRadios.forEach(radio => {
+                totalScore += parseInt(radio.value);
+            });
+
+            // Update the total score display to include "de [total posible]"
+            document.getElementById('totalScore').textContent = `${totalScore} de ${maxPossibleScore}`;
+
+            // Determine the performance level based on the total score
+            let performanceLevelText = '';
+            if (totalScore >= 35) {
+                performanceLevelText = 'Excelente';
+            } else if (totalScore >= 25) {
+                performanceLevelText = 'Satisfactorio';
+            } else if (totalScore >= 15) {
+                performanceLevelText = 'Regular';
+            } else {
+                performanceLevelText = 'Necesita mejorar';
+            }
+
+            // Actualiza el Performance Level y lo despliega en el HTML
+            document.getElementById('performanceLevel').textContent = performanceLevelText;
+        }
+
+        /**
+         * Actualiza los campos 'Directivo' y 'Nombre del estudiante practicante' 
+         * basado en el 'Centro Receptor' seleccionado.
+         */
+         function updateFieldsBasedOnCentroReceptor() {
+            const centroReceptorSelect = document.getElementById('centroReceptor');
+            const directivoInput = document.getElementById('directivo');
+            const nombrePracticanteSelect = document.getElementById('nombrePracticante'); // <-- Nueva línea para obtener el select de estudiantes
+            const selectedValue = centroReceptorSelect.value;
+
+            // Limpia las opciones actuales del select de estudiantes <-- Nueva línea
+            nombrePracticanteSelect.innerHTML = '<option value="">Seleccione un estudiante</option>';
+
+            if (selectedValue === "Esc. Prim. 'Joaquín Ramírez Arballo'") {
+                directivoInput.value = 'Carmen Briseida Sánchez González';
+                // <-- Bloque nuevo para estudiantes de Joaquín Ramírez
+                const students = [
+                    "Covarrubias Ruiz, Arely Azucena",
+                    "Gómez Gámez, América Vianey",
+                    "López Aldama, Denisse",
+                    "López León, Martha Cecilia",
+                    "Luna Pérez, Maritza Marlén",
+                    "Morales Ramírez, Miguel Ángel"
+                ];
+                students.forEach(student => {
+                    const option = document.createElement('option');
+                    option.value = student;
+                    option.textContent = student;
+                    nombrePracticanteSelect.appendChild(option);
+                });
+                // <-- Fin del bloque nuevo
+            } else if (selectedValue === "Esc. Prim. 'IV Ayuntamiento No. 2'") {
+                directivoInput.value = 'Betzabé Guillermina Torres Rentería';
+                // <-- Bloque nuevo para estudiantes de IV Ayuntamiento
+                const students = [
+                    "Chaparro Hernández, Andrea",
+                    "Martínez Pérez, Mónica Patricia",
+                    "Sánchez De la Rocha, Mireya Naiomy"
+                ];
+                students.forEach(student => {
+                    const option = document.createElement('option');
+                    option.value = student;
+                    option.textContent = student;
+                    nombrePracticanteSelect.appendChild(option);
+                });
+                // <-- Fin del bloque nuevo
+            } else {
+                directivoInput.value = ''; // Se mantiene para limpiar si no hay selección
+            }
+        }
+
+        // Call calculateTotalScore initially to set initial values
+        document.addEventListener('DOMContentLoaded', () => {
+            calculateTotalScore();
+            updateFieldsBasedOnCentroReceptor(); // Also call updateDirectivo on load to handle pre-selected values if any
+            document.getElementById('sendRubricBtn').addEventListener('click', sendRubric); // Event listener al botón de enviar
+        });
+    </script>
+</body>
+</html>
